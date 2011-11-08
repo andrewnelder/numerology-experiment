@@ -23,7 +23,7 @@ from csv import reader
 from logging import getLogger, basicConfig, DEBUG
 
 MASTER_NUMBERS = [11,22]
-
+DAYS_IN_MONTH = {1:31,2:28,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31}
 LIFEPATH_COUNT = defaultdict(int)
 LIFEPATH_DEFS = {1: 'The Life Path 1 suggests that you entered this plane '
                     'with skills allowing you to become a leader type rather '
@@ -140,14 +140,28 @@ def process_file(filename):
             lifepath_count[0] += 1
     return lifepath_count
 
+def describe_bias():
+    lifepath_count = defaultdict(int)
+    for m in range(1, 12):
+        for d in range(1, DAYS_IN_MONTH[m]+1):
+            for y in range(1, 2012):
+                lifepath_num = date_to_number("%04d-%02d-%02d"%(y,m,d,))
+                if lifepath_num not in MASTER_NUMBERS:
+                    lifepath_count[lifepath_num] += 1
+                else:
+                    lifepath_count[0] += 1
+    return lifepath_count
+        
+
 def main():
     '''
     Main()
     '''
     
     # Open the file
-    filename = './data/award_winner.csv'    
-    lifepath_count = process_file(filename)
+    filename = './data/visual_artist.csv'    
+    #lifepath_count = process_file(filename)
+    lifepath_count = describe_bias()
     log_result(lifepath_count)
     
 if __name__ == '__main__':
