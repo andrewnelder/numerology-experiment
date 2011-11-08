@@ -1,6 +1,6 @@
 This is a study that is based on my idle curiosities regarding numerology.
 According to the divination experts, numerology's most important calculation
-relates to that of your birth.  By taking the dates of 
+relates to that of your birth.
 
 This study looked at (from what I understand of the field) the most common
 method for deriving this value.  It also considers master numbers: 11 and 22.
